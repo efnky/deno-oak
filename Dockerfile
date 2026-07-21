@@ -10,7 +10,7 @@ FROM denoland/deno:2.1.4 AS runner
 
 WORKDIR /app
 
-COPY --from=builder /deno-dir /deno-dir
+COPY --from=builder --chown=deno:deno /deno-dir /deno-dir
 COPY . .
 
 EXPOSE 8080
