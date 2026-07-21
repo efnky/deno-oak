@@ -13,8 +13,10 @@ WORKDIR /app
 COPY --from=builder --chown=deno:deno /deno-dir /deno-dir
 COPY --chown=deno:deno . .
 
+RUN mkdir -p /app && chown -R deno:deno /app
+
 EXPOSE 8080
 
 USER deno
 
-CMD ["deno", "run", "--allow-net", "--allow-env", "main.ts"]
+CMD ["deno", "run", "--allow-net", "--allow-env", "--no-lock", "main.ts"]
